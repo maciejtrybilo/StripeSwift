@@ -8,7 +8,7 @@ public struct StripeSwift {
     
     private let authorizationHeader: String
     
-    init?(apiKey: String) {
+    public init?(apiKey: String) {
         
         guard let utf8Data = apiKey.data(using: .utf8) else {
             return nil
