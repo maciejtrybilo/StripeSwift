@@ -30,7 +30,7 @@ public struct StripeSwift {
         
         let response = try? StripeClient.post("https://api.stripe.com/v1/charges",
                                               headers: ["Authorization" : authorizationHeader,
-                                                        "Content-Type"  : "application/json"],
+                                                        "Content-Type"  : "application/x-www-form-urlencoded"],
                                               body: Body.data(charge.makeNode().formURLEncoded())
         )
         
