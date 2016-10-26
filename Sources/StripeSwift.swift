@@ -21,31 +21,33 @@ public struct StripeSwift {
     
     public func charges() -> JSON? {
         
-        let response = try? StripeClient.get("https://api.stripe.com/v1/charges",
-                                             headers: ["Authorization" : authorizationHeader]
-        )
-        
-        if let json = response?.json {
-            return json
+        do {
+            let response = try StripeClient.get("https://api.stripe.com/v1/charges",
+                                                headers: ["Authorization" : authorizationHeader]
+            )
+            
+            return response.json
+            
+        } catch let error {
+            log?.error("Charges failed: \(error.localizedDescription)")
+            return nil
         }
-        
-        log?.error("Charges failed: status \(response?.status.statusCode) \(response?.data)")
-        return nil
     }
     
     public func charge(charge: Charge) -> JSON? {
         
-        let response = try? StripeClient.post("https://api.stripe.com/v1/charges",
-                                              headers: ["Authorization" : authorizationHeader,
-                                                        "Content-Type"  : "application/x-www-form-urlencoded"],
-                                              body: Body.data(charge.makeNode().formURLEncoded())
-        )
-        
-        if let json = response?.json {
-            return json
+        do {
+            let response = try StripeClient.post("https://api.stripe.com/v1/charges",
+                                                 headers: ["Authorization" : authorizationHeader,
+                                                           "Content-Type"  : "application/x-www-form-urlencoded"],
+                                                 body: Body.data(charge.makeNode().formURLEncoded())
+            )
+            
+            return response.json
+            
+        } catch let error {
+            log?.error("Charge failed: \(error.localizedDescription)")
+            return nil
         }
-        
-        log?.error("Charge failed: status \(response?.status.statusCode) \(response?.data)")
-        return nil
     }
 }
