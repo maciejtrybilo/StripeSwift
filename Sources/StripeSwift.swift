@@ -7,9 +7,9 @@ typealias StripeClient = FoundationClient//Client<TCPClientStream, Serializer<Re
 public struct StripeSwift {
     
     private let authorizationHeader: String
-    private let log: Log?
+    private let log: LogProtocol?
     
-    public init?(apiKey: String, log: Log? = nil) {
+    public init?(apiKey: String, log: LogProtocol? = nil) {
         
         guard let utf8Data = apiKey.data(using: .utf8) else {
             return nil
