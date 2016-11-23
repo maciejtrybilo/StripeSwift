@@ -1,8 +1,10 @@
 import HTTP
 import Transport
 import Vapor
+import Foundation
 
-typealias StripeClient = FoundationClient//Client<TCPClientStream, Serializer<Request>, Parser<Response>>
+typealias StripeClient = FoundationClient
+//typealias StripeClient = Client<TCPClientStream, Serializer<Request>, Parser<Response>>
 
 public struct StripeSwift {
     
