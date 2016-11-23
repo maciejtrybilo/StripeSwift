@@ -11,11 +11,7 @@ public struct StripeSwift {
     
     public init?(apiKey: String, log: LogProtocol? = nil) {
         
-        guard let utf8Data = apiKey.data(using: .utf8) else {
-            return nil
-        }
-        
-        self.authorizationHeader = "Basic \(utf8Data.base64EncodedString())"
+        self.authorizationHeader = "Bearer \(apiKey)"
         self.log = log
     }
     
